@@ -14,10 +14,10 @@ module.exports = function(grunt) {
 				dest: "dist/application.min.js"
 			}
 		},
-		build_es6: {
+		babel: {
       files: 
           {
-              dest: ['dest/'],
+              dest: ['dest/*.js'],
               src: ['src/*.es6'],
               ext: '.js'
           }  
@@ -105,7 +105,7 @@ module.exports = function(grunt) {
 	// Actual task that are run at commandline
 	grunt.registerTask("default", ['jshint', 'concat', 'uglify']);
 	grunt.registerTask("reboot", ['clean', 'default']);
-	grunt.registerTask("es6", ['build_es6']);
+	grunt.registerTask("es6", ['babel']);
 
 
 	// custom tasks
