@@ -15,13 +15,16 @@ module.exports = function(grunt) {
 			}
 		},
 		babel: {
-      files: 
-          {
-              dest: ['dest/*.js'],
-              src: ['src/*.es6'],
-              ext: '.js'
-          }  
-	    },
+		  presets: ['es2015'],
+		  files: 
+		    {
+		        expand:true,
+		        cwd: 'src',
+		        dest: 'build',
+		        src: ['**/*.es6'],
+		        ext: '.compiled.js'
+		    }  
+		},
 		jshint: {
 			options: {
 				jshintrc: "rc/jshintrc"

@@ -1,0 +1,10 @@
+{
+  presets: ['es2015'],
+  files: 
+    {
+        expand:true,
+        dest: 'dest',
+        src: 'src/*.es6',
+        ext: '.js'
+    }  
+}
