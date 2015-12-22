@@ -15,14 +15,12 @@ module.exports = function(grunt) {
 			}
 		},
 		build_es6: {
-	            files: [
-	                {
-	                    expand: true,
-	                    dest: ['dest/']
-	                    src: ['src/*.es6'],
-	                    ext: '.js'
-	                }
-	            ]
+      files: 
+          {
+              dest: ['dest/'],
+              src: ['src/*.es6'],
+              ext: '.js'
+          }  
 	    },
 		jshint: {
 			options: {
