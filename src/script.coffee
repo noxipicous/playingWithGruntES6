@@ -1,0 +1,1 @@
+sayHi (name) -> "Hi " + name + "!"
