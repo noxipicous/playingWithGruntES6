@@ -15,13 +15,15 @@ module.exports = function(grunt) {
 			}
 		},
 		babel: {
-		  presets: ['es2015'],
+			options: {
+				presets: ['es2015']
+			},
 		  files: 
 		    {
 		        expand:true,
 		        cwd: 'src',
 		        dest: 'build',
-		        src: ['**/*.es6'],
+		        src: ['**/*.js'],
 		        ext: '.compiled.js'
 		    }  
 		},
@@ -106,7 +108,7 @@ module.exports = function(grunt) {
 	// grunt.loadTasks('/home/fishtails/Development/node/grunt/tutsplus/plugins/tasks') 
 
 	// Actual task that are run at commandline
-	grunt.registerTask("default", ['jshint', 'concat', 'uglify']);
+	grunt.registerTask("default", ['jshint', 'concat', 'babel', 'uglify']);
 	grunt.registerTask("reboot", ['clean', 'default']);
 	grunt.registerTask("es6", ['babel']);
 
