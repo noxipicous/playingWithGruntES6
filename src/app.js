@@ -5,5 +5,6 @@ class Person {
 
 	greet(name) {
 		console.log(`Hello ${name}`);
+    alert('hi'); 
 	}
 }

@@ -1,3 +1,13 @@
+class Person {
+	constructor(){
+		console.log('person object instantiated');
+	}
+
+	greet(name) {
+		console.log(`Hello ${name}`);
+    alert('hi'); 
+	}
+}
 var MyModule = (function(){
 	function sayHi (name) {
 		return "Hi, " + name + "!";

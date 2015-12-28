@@ -1,6 +1,18 @@
 module.exports = function(grunt) {
 	// require('load-grunt-tasks')(grunt);
 
+		// Necessary for task configuration to useful (listed above)
+	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-jshint');
+	// grunt.loadNpmTasks("grunt-contrib-eslint");
+	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-coffee');
+	grunt.loadNpmTasks('grunt-contrib-nodeunit');
+	grunt.loadNpmTasks('grunt-contrib-clean');
+
+	grunt.loadNpmTasks('grunt-babel');
+
 	grunt.initConfig({
 		uglify: {
 			options: {
@@ -10,8 +22,10 @@ module.exports = function(grunt) {
 				banner: "/* Author: Andy Nunez*/\n"
 			},
 			target: {
-				src: "dest/application.js",
-				dest: "dist/application.min.js"
+				src: "build/application.compiled.js",
+				dest: "dist/application.compiled.min.js"
+				// src: "dest/application.js",
+				// dest: "dist/application.min.js"
 			}
 		},
 		babel: {
@@ -21,11 +35,26 @@ module.exports = function(grunt) {
 		  files: 
 		    {
 		        expand:true,
-		        cwd: 'src',
+		        cwd: 'dest',
 		        dest: 'build',
-		        src: ['**/*.js'],
+		        src: ['application.js'],
 		        ext: '.compiled.js'
-		    }  
+		    }  		  
+		    // {
+		    //     expand:true,
+		    //     cwd: 'src',
+		    //     dest: 'build',
+		    //     src: ['**/*.js'],
+		    //     ext: '.compiled.js'
+		    // }  
+		},
+		eslint: {
+				src: ["**/*.js"],
+				rules: {
+					"eqeqeq": true,
+					"curly": true,
+					"undef": true
+				}
 		},
 		jshint: {
 			options: {
@@ -40,14 +69,15 @@ module.exports = function(grunt) {
 				seperator: ";"
 			},
 			target: {
-				src: ["src/application.js", "src/util.js"],
+				// src: ["src/application.js", "src/util.js"],
+				src: ["src/*.js"],
 				dest: "dest/application.js"
 			}
 		},
 		watch: {
 			scripts: {
 				files: ["src/*.js"],
-				tasks: ["jshint"]
+				tasks: ["default"]
 			}
 		},
 		coffee: {
@@ -68,7 +98,7 @@ module.exports = function(grunt) {
 			target: 'test/*_test.js'
 		},
 		clean: {
-			target: ['dist', 'lib']
+			target: ['dist', 'build', 'lib']
 		},
 		multi: {
 			target: {
@@ -93,21 +123,12 @@ module.exports = function(grunt) {
 		}
 	});
 
-	// Necessary for task configuration to useful (listed above)
-	grunt.loadNpmTasks('grunt-contrib-uglify');
-	grunt.loadNpmTasks('grunt-contrib-jshint');
-	grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-contrib-coffee');
-	grunt.loadNpmTasks('grunt-contrib-nodeunit');
-	grunt.loadNpmTasks('grunt-contrib-clean');
-
-	grunt.loadNpmTasks('grunt-babel');
 
 	// Custom plugin
 	// grunt.loadTasks('/home/fishtails/Development/node/grunt/tutsplus/plugins/tasks') 
 
 	// Actual task that are run at commandline
+	// grunt.registerTask("default", ['jshint', 'concat', 'babel']);
 	grunt.registerTask("default", ['jshint', 'concat', 'babel', 'uglify']);
 	grunt.registerTask("reboot", ['clean', 'default']);
 	grunt.registerTask("es6", ['babel']);
